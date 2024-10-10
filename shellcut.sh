@@ -32,6 +32,12 @@ if [ ! -d ~/.zshrc-bk ]; then
 	mkdir ~/.zshrc-bk
 fi
 
+if [ ! -d ~/.shellcut ]; then
+	mkdir ~/.shellcut
+  touch ~/.shellcut/orig-config.txt
+  cat ~/.zshrc > ~/.shellcut/orig-config.txt
+fi
+
 # @mfwolffe Mention function invocations look a touch different
 #
 if [[ $1 = "list" ]]; then

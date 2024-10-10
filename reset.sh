@@ -10,4 +10,4 @@ usage() {
 EOF
 }
 
-restore 0
+restore.sh 0

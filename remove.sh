@@ -17,10 +17,10 @@ nosed() {
 
 rmline=$(cat ~/.zshrc | grep -n "^alias $1" | awk -F ":" '{print $1}')
 
-# @mfwolffe Mention the '?&2' and silencing from calling script
+# @mfwolffe Mention the '>&2' and silencing from calling script
 if [[ $rmline -eq 0 ]]; then
 	printf "The alias %s does not exist.\n" $1 >&2
 	exit 1
-fi 
+fi
 
 nosed $rmline

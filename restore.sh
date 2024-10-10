@@ -21,7 +21,16 @@ if [[ $# -ne 1 ]]; then
 fi
 
 if [[ $1 -eq 0 ]]; then
-  cat $HOME/.zshrc-shc-bk > $HOME/.zshrc
+  if [[ ! -d $HOME/.shellcut ]]; then
+    mkdir $HOME/.shellcut
+  fi
+
+  if [[ ! -f $HOME/.shellcut/orig-config.txt ]]; then
+    touch $HOME/.shellcut/orig-config.txt
+    cat ~/.zshrc > $HOME/.shellcut/orig-config.txt
+  fi
+
+  exit 0
 fi
 
 count=$(ls "${bkdir}" | wc -l)
