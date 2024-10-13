@@ -8,9 +8,24 @@ centering() {
   printf "\n%*s\n" $(((${#1}+$col)/2)) "$1"
 }
 
+addnamed() {
+  pushd "${HOME}/.zshrc-bk/named"
+  touch "${1}"
+  cat "${HOME}"/.zshrc > "${1}"
+  popd 
+}
+
+show() {
+  touch lsout
+  ls "${HOME}/.zshrc-bk" > lsout
+  filename=$(cat lsout | head -n "${1}" | tail -n 1)
+  cat "${HOME}/.zshrc-bk/${filename}"
+  rm lsout
+}
+
 # SEEME lol keep it less than 80 columns?
 usage() {
-  centering "SHELLCUT"
+  centering ">|< SHELLCUT >|<"
   cat <<EOF
   Usage: shellcut backup [command]
 
@@ -24,9 +39,10 @@ usage() {
     addnamed  [name]  |   Create a named shell config backup file with filename
                           [name].bk if no dot-suffix file extension is provided
                           otherwise with filename [name]
-
 EOF
 }
+
+# TODO @mfwolffe Make logic a switch
 
 # @mfwolffe Mention getopt and why I am not using it in these scripts
 #                     (because there's 3 diff implementations and it's annoying)
@@ -61,16 +77,29 @@ if [[ $1 = "show"   ]]; then
     exit 1
   fi
 
-  # @mfwolffe Mention 1) How everything is a file
-  #                   2) There's two types of files; as such,
-  #                   3) it does not matter that lsout does not have a .txt extension
-  touch lsout
-  ls "${HOME}/.zshrc-bk" > lsout
-  filename=$(cat lsout | head -n "${2}" | tail -n 1)
-  cat "${HOME}/.zshrc-bk/${filename}"
+  show "${2}"
 
   # @mfwolffe Mention Scripts should clean up after themselves
-  rm lsout
+  exit 0
+fi
+
+if [[ $1 = "addnamed" ]]; then
+  if [[ ! -d "${HOME}/.zshrc-bk/named" ]]; then
+    mkdir "${HOME}/.zshrc-bk/named"
+  fi
+
+  # we don't want all our files named 'addname.bk'
+  shift
+
+  # trust me I know that regex is stupid, it's just 2am
+  # and I am not sure why I am intent on working on this
+  # rn
+  if [[ "${1}" =~ .[a-zA-Z][a-zA-Z]*$ ]]; then
+    addnamed "${1}"
+    exit 0
+  fi
+
+  addnamed "${1}".bk
   exit 0
 fi
 
@@ -81,11 +110,8 @@ if [[ $1 = "showdiff" ]]; then
     exit 1
   fi
 
-  touch lsout
-  ls "${HOME}/.zshrc-bk" > lsout
-  filename=$(cat lsout | head -n "${2}" | tail -n 1)
+  show "${2}"
   diff "${HOME}/.zshrc-bk/${filename}" "${HOME}/.zshrc"
-  rm lsout
   exit 0
 fi
 
