@@ -1,16 +1,30 @@
 #!/bin/bash
 
+# Literally just a console format function
+# named centering as a nod to LaTeX nuisance
+# (only sometimes I guess) of the same name
+centering() {
+  col=$(tput cols)
+  printf "\n%*s\n" $(((${#1}+$col)/2)) "$1"
+}
+
+# SEEME lol keep it less than 80 columns?
 usage() {
+  centering "SHELLCUT"
   cat <<EOF
   Usage: shellcut backup [command]
 
   Commands:
-    list          |   List all current backups
-    purge         |   Delete all stored backups
-    create        |   Create new shell config backup
-    show     [n]  |   Write a specific backup to stdout 
-    restore  [n]  |   Restore config to a specific backup
-    showdiff [n]  |   Diff a specific config with the current config 
+    list              |   List all current backups
+    purge             |   Delete all stored backups
+    create            |   Create new shell config backup
+    show      [n]     |   Write a specific backup to stdout
+    restore   [n]     |   Restore config to a specific backup
+    showdiff  [n]     |   Diff a specific config with the current config
+    addnamed  [name]  |   Create a named shell config backup file with filename
+                          [name].bk if no dot-suffix file extension is provided
+                          otherwise with filename [name]
+
 EOF
 }
 
