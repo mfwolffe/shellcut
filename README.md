@@ -30,6 +30,7 @@ _Here's a poem I wrote just now about that:_
 
 Other goals include:
 - defining and loading alias groupings/subsets
+- write the thing in Rust to have an excuse to learn rudimentary Rust
 - package the thing if others also like it
 - what this does for aliases but for env vars
 
