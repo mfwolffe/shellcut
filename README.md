@@ -14,13 +14,13 @@ _Here's a poem I wrote just now about that:_
 > 
 > to be shell agnostic, I'll `sh` in a flash.
 > 
-> But when it's just speed
+> But when it's _speed_
 > 
-> that I seek,
+> that I solely seek,
 > 
 > I drop them all
 > 
-> for a `fish` so sleek
+> for a `fish` oh so sleek
 > 
 > \- Forrester
 
