@@ -24,7 +24,10 @@ _Here's a poem I wrote just now about that:_
 > 
 > \- Forrester
 
-**_So the long term goal is to have a single interface/syntax in/with which I can define my aliases that then get sourced by each possible shell that I use_**
+**So the long term goal is to have a single interface/syntax in/with which I can define my aliases that can then be used to generate files to source by each shell I use that is idiomatic for that respective shell**
+
+**_Obviously, if you only use posix-compliant shells than this is kind of not a useful goal for you to have?_**
+
 Other goals include:
 - defining and loading alias groupings/subsets
 - package the thing if others also like it
