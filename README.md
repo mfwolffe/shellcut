@@ -20,7 +20,7 @@ _Here's a poem I wrote just now about that:_
 > 
 > I drop them all
 > 
-> for a `fish` oh so sleek
+> for a `fish` so sleek
 > 
 > \- Forrester
 
